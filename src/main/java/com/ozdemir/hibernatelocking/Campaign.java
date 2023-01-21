@@ -28,5 +28,12 @@ public class Campaign {
     @Column(name = "CODE_COUNT")
     private Integer codeCount;
 
-
+    @Override
+    public String toString() {
+        return "Campaign{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", codeCount=" + codeCount +
+                '}';
+    }
 }

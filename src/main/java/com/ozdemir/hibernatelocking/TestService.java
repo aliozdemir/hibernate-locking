@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -49,5 +50,11 @@ public class TestService {
                 log.error("Exception occurred", e.getMessage());
             }
         }
+    }
+
+    public void writeValidCampaigns(){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Campaign> campaigns = entityManager.createQuery("select c from Campaign c").getResultList();
+        campaigns.forEach(c->log.info(c.toString()));
     }
 }
