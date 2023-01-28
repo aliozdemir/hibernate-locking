@@ -1,8 +1,7 @@
 package com.ozdemir.hibernatelocking.scheduler;
 
-import com.ozdemir.hibernatelocking.TestService;
+import com.ozdemir.hibernatelocking.service.CampaignService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -10,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppScheduler {
 
-    private final TestService testService;
+    private final CampaignService campaignService;
 
-    public AppScheduler(TestService testService) {
-        this.testService = testService;
+    public AppScheduler(CampaignService campaignService) {
+        this.campaignService = campaignService;
     }
 
     // cron = "second minute hour dayOfMonth dayOfWeek year"
     // everyday executes at 22:10
     @Scheduled(cron = "0 18 22 * * *")
     public void campaignInfo(){
-        testService.writeValidCampaigns();
+        campaignService.writeValidCampaigns();
     }
 }

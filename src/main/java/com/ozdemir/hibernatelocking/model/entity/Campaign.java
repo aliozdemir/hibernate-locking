@@ -1,19 +1,19 @@
-package com.ozdemir.hibernatelocking;
+package com.ozdemir.hibernatelocking.model.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 /*
 * @Version : optimistic lock mekanizmasını aktif eder.
 * */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "campaign")
 public class Campaign {
 
@@ -28,12 +28,4 @@ public class Campaign {
     @Column(name = "CODE_COUNT")
     private Integer codeCount;
 
-    @Override
-    public String toString() {
-        return "Campaign{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", codeCount=" + codeCount +
-                '}';
-    }
 }

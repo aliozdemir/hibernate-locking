@@ -1,5 +1,8 @@
-package com.ozdemir.hibernatelocking;
+package com.ozdemir.hibernatelocking.service;
 
+import com.ozdemir.hibernatelocking.model.entity.Campaign;
+import com.ozdemir.hibernatelocking.model.response.CampaignsResponse;
+import com.ozdemir.hibernatelocking.repository.CampaignRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -7,11 +10,13 @@ import org.springframework.stereotype.Service;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Service
-public class TestService {
+@RequiredArgsConstructor
+public class CampaignService {
+
+    private final CampaignRepository campaignRepository;
 
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
@@ -56,5 +61,9 @@ public class TestService {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<Campaign> campaigns = entityManager.createQuery("select c from Campaign c").getResultList();
         campaigns.forEach(c->log.info(c.toString()));
+    }
+
+    public List<Campaign> getCampaigns() {
+        return campaignRepository.findAll();
     }
 }
