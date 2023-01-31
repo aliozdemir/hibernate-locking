@@ -1,5 +1,6 @@
 package com.ozdemir.hibernatelocking.service;
 
+import com.ozdemir.hibernatelocking.aspect.CustomLog;
 import com.ozdemir.hibernatelocking.exception.UserNotExistException;
 import com.ozdemir.hibernatelocking.jwt.*;
 import com.ozdemir.hibernatelocking.model.entity.Role;
@@ -11,6 +12,7 @@ import com.ozdemir.hibernatelocking.model.response.AuthenticationResponse;
 import com.ozdemir.hibernatelocking.repository.RoleRepository;
 import com.ozdemir.hibernatelocking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +31,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
 
+    @CustomLog(level = LogLevel.INFO)
     public void register(RegisterRequest request) {
         Optional<User> byEmail = userRepository.findByEmail(request.getEmail());
         if(byEmail.isPresent()){
@@ -54,6 +57,7 @@ public class AuthenticationService {
         userRepository.save(user);
     }
 
+    @CustomLog
     public AuthenticationResponse login(AuthenticationRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail());
         if(!user.isPresent()){
