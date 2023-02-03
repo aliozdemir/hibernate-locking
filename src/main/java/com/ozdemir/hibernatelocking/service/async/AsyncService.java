@@ -49,7 +49,9 @@ public class AsyncService {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
-        //all tasks completed. Total alapsed time in this example is about 10000ms
+        /*all tasks completed. Total alapsed time in this example is about 10000ms
+          If i didn't make async call it would take about 19000ms
+         */
         final List<UserResponse> users = userResult.get();
         final List<Campaign> campaigns = campaignResult.get();
 
