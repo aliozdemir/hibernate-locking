@@ -43,6 +43,6 @@ public class CampaignController {
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @GetMapping("/campaigns")
     public ResponseEntity<List<Campaign>> listOfCampaigns(){
-        return ResponseEntity.ok(campaignService.getCampaigns());
+        return ResponseEntity.ok(campaignService.getCampaigns(0));
     }
 }

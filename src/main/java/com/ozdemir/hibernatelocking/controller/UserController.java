@@ -25,6 +25,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/list")
     public ResponseEntity<List<UserResponse>> getUsers(){
-        return ResponseEntity.ok(userService.getUsers());
+        return ResponseEntity.ok(userService.getUsers(0, true));
     }
 }

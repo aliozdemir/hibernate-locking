@@ -63,7 +63,15 @@ public class CampaignService {
         campaigns.forEach(c->log.info(c.toString()));
     }
 
-    public List<Campaign> getCampaigns() {
+    public List<Campaign> getCampaigns(long delay) {
+        log.warn("CAMPAIGN LIST SERVICE IS EXECUTING!!!!!!");
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        log.warn("CAMPAIGN LIST SERVICE IS EXECUTED!!!!!!");
         return campaignRepository.findAll();
+
     }
 }

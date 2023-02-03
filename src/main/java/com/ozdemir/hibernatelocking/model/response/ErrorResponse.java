@@ -1,4 +1,4 @@
-package com.ozdemir.hibernatelocking.exception;
+package com.ozdemir.hibernatelocking.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
